@@ -13,15 +13,15 @@ pip install opencv-python numpy
 运行实验：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py
+& "/python.exe" pneumonia_ct_segmentation.py
 ```
 
 脚本已经内置了本次实验的默认图像路径和标签路径。默认方法为 `rtrees`，会利用标签训练随机森林像素分类器，再输出分割结果。若你的数据放在其他位置，再使用下面这种完整写法：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py `
-  --images "D:/HuaweiMoveData/Users/a2710/Desktop/生医大三下/医学成像与图像处理/图像处理部分实验/images 200" `
-  --masks "D:/HuaweiMoveData/Users/a2710/Desktop/生医大三下/医学成像与图像处理/图像处理部分实验/masks 200" `
+& "python.exe" pneumonia_ct_segmentation.py `
+  --images "images 200" `
+  --masks "masks 200" `
   --output results
 ```
 
