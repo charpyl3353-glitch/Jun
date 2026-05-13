@@ -1,0 +1,11 @@
+.idea/
+__pycache__/
+*.py[cod]
+
+results/
+results_*/
+results_extra_trees_slice_position/
+
+.venv/
+venv/
+env/
