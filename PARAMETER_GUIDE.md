@@ -3,7 +3,7 @@
 运行命令示例：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py
+python pneumonia_ct_segmentation.py
 ```
 
 ## 如果你用 PyCharm 运行
@@ -15,7 +15,7 @@ PYCHARM_THRESHOLD = None
 PYCHARM_AREA_LIMIT = None
 PYCHARM_TUNE_IMAGES = 0
 PYCHARM_MAX_VISUALS = 0
-PYCHARM_OUTPUT_DIR = Path("results_extra_trees_slice_position")
+PYCHARM_OUTPUT_DIR = Path("results")
 PYCHARM_METHOD = "extra_trees"
 PYCHARM_TEST_RATIO = 0.2
 PYCHARM_SPLIT_SEED = 2026
@@ -134,7 +134,7 @@ PYCHARM_METHOD = "extra_trees"
 示例：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --threshold 0.70 --output results_t070
+python pneumonia_ct_segmentation.py --threshold 0.70 --output results_t070
 ```
 
 建议尝试：
@@ -153,7 +153,7 @@ PYCHARM_METHOD = "extra_trees"
 示例：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --threshold 0.70 --area-limit 0.15 --output results_t070_a015
+python pneumonia_ct_segmentation.py --threshold 0.70 --area-limit 0.15 --output results_t070_a015
 ```
 
 建议尝试：
@@ -196,7 +196,7 @@ PYCHARM_RECOVERY_MAX_GROWTH = 1.2
 示例：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --tune-images 60 --output results_fast_tune
+python pneumonia_ct_segmentation.py --tune-images 60 --output results_fast_tune
 ```
 
 最终写实验结果时，建议使用默认 `0`。
@@ -236,7 +236,7 @@ PYCHARM_SPLIT_SEED = 2026
 示例：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --max-visuals 20
+python pneumonia_ct_segmentation.py --max-visuals 20
 ```
 
 ### `--output`
@@ -246,7 +246,7 @@ PYCHARM_SPLIT_SEED = 2026
 示例：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --threshold 0.70 --output results_t070
+python pneumonia_ct_segmentation.py --threshold 0.70 --output results_t070
 ```
 
 ## 推荐调参顺序
@@ -254,7 +254,7 @@ PYCHARM_SPLIT_SEED = 2026
 1. 先使用推荐默认设置运行一次。
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --output results_extra_trees_split
+python pneumonia_ct_segmentation.py --output results
 ```
 
 2. 打开 `results_default/threshold_sweep.csv`。
@@ -267,19 +267,19 @@ PYCHARM_SPLIT_SEED = 2026
 3. 如果预测偏大，试：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --threshold 0.70 --output results_t070
+python pneumonia_ct_segmentation.py --threshold 0.70 --output results_t070
 ```
 
 4. 如果还是偏大，试：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --threshold 0.70 --area-limit 0.15 --output results_t070_a015
+python pneumonia_ct_segmentation.py --threshold 0.70 --area-limit 0.15 --output results_t070_a015
 ```
 
 5. 如果预测偏小，试：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --threshold 0.60 --output results_t060
+python pneumonia_ct_segmentation.py --threshold 0.60 --output results_t060
 ```
 
 ## 结果判断

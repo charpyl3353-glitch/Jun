@@ -4,7 +4,6 @@ __pycache__/
 
 results/
 results_*/
-results_extra_trees_slice_position/
 
 .venv/
 venv/

@@ -1,6 +1,6 @@
 # 肺炎 CT 图像分割实验
 
-本项目用于完成“医学成像与图像处理”中的肺炎 CT 病灶分割实验。程序会把病灶区域作为前景、非病灶区域作为背景，并使用提供的标签评价分割效果。
+本项目用于肺炎 CT 病灶分割实验。程序会把病灶区域作为前景、非病灶区域作为背景，并使用提供的标签评价分割效果。
 
 ## 使用方法
 
@@ -13,40 +13,40 @@ pip install opencv-python numpy
 运行实验：
 
 ```powershell
-& "/python.exe" pneumonia_ct_segmentation.py
+python pneumonia_ct_segmentation.py
 ```
 
-脚本已经内置了本次实验的默认图像路径和标签路径。默认方法为 `rtrees`，会利用标签训练随机森林像素分类器，再输出分割结果。若你的数据放在其他位置，再使用下面这种完整写法：
+脚本默认从 `data/images` 读取 CT 图像，从 `data/masks` 读取标签。默认方法为 `extra_trees`，会利用标签训练随机森林像素分类器，再输出分割结果。若你的数据放在其他位置，再使用下面这种完整写法：
 
 ```powershell
-& "python.exe" pneumonia_ct_segmentation.py `
-  --images "images 200" `
-  --masks "masks 200" `
+python pneumonia_ct_segmentation.py `
+  --images "data/images" `
+  --masks "data/masks" `
   --output results
 ```
 
 如果想运行原来的传统阈值分割 baseline：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --method threshold
+python pneumonia_ct_segmentation.py --method threshold
 ```
 
 如果预测病灶明显偏大，可以手动提高随机森林概率阈值：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --threshold 0.65
+python pneumonia_ct_segmentation.py --threshold 0.65
 ```
 
 阈值越高，预测区域通常越小。程序默认会使用全部图像自动调阈值；如果想加快调参，可以只均匀抽样一部分图像：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --tune-images 60
+python pneumonia_ct_segmentation.py --tune-images 60
 ```
 
 如果预测仍然明显偏大，可以手动限制预测病灶面积占肺部 ROI 的比例：
 
 ```powershell
-& "D:/ProgramData/anaconda3/envs/2025ai/python.exe" pneumonia_ct_segmentation.py --threshold 0.65 --area-limit 0.12
+python pneumonia_ct_segmentation.py --threshold 0.65 --area-limit 0.12
 ```
 
 面积上限默认不启用，因为部分图像真实病灶面积很大，硬限制会导致漏分割。自动调阈值时，程序会生成 `results/threshold_sweep.csv`，里面记录不同阈值下的平均 Dice 和预测/真实面积比。若预测偏大，优先选择面积比更接近 1 的较高阈值。

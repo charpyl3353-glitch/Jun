@@ -10,8 +10,8 @@
 
 示例：
     python pneumonia_ct_segmentation.py ^
-        --images "D:/HuaweiMoveData/Users/a2710/Desktop/生医大三下/医学成像与图像处理/图像处理部分实验/images 200" ^
-        --masks "D:/HuaweiMoveData/Users/a2710/Desktop/生医大三下/医学成像与图像处理/图像处理部分实验/masks 200" ^
+        --images "data/images" ^
+        --masks "data/masks" ^
         --output results
 """
 
@@ -30,14 +30,10 @@ import numpy as np
 
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".bmp", ".tif", ".tiff"}
 
-# 默认使用本次实验给出的 200 张 CT 图像和对应标签路径。
-# 如果数据移动到其他位置，可以通过命令行参数 --images 和 --masks 覆盖。
-DEFAULT_IMAGES_DIR = Path(
-    "D:/HuaweiMoveData/Users/a2710/Desktop/生医大三下/医学成像与图像处理/图像处理部分实验/images 200"
-)
-DEFAULT_MASKS_DIR = Path(
-    "D:/HuaweiMoveData/Users/a2710/Desktop/生医大三下/医学成像与图像处理/图像处理部分实验/masks 200"
-)
+# 默认使用项目内的通用数据目录。
+# 如果数据放在其他位置，可以通过命令行参数 --images 和 --masks 覆盖。
+DEFAULT_IMAGES_DIR = Path("data/images")
+DEFAULT_MASKS_DIR = Path("data/masks")
 
 # 固定随机种子，保证每次抽样训练时结果尽量可复现。
 RNG = np.random.default_rng(2026)
@@ -65,7 +61,7 @@ PYCHARM_TUNE_IMAGES = 0
 PYCHARM_MAX_VISUALS = 0
 
 # 输出目录。每次试不同参数可以换一个名字，方便比较结果。
-PYCHARM_OUTPUT_DIR = Path("results_extra_trees_slice_position")
+PYCHARM_OUTPUT_DIR = Path("results")
 
 # 分割方法：
 # extra_trees 是 sklearn 极端随机森林，通常比 OpenCV rtrees 更强；
